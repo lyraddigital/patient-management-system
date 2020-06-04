@@ -1,0 +1,15 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Patient {
+  id: String!
+  firstName: String!
+  lastName: String!
+  imageSrc: String!
+  room: String!
+}
+
+type Query {
+  patients: [Patient!]!
+}

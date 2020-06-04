@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { patientsRequested } from '../../store/actions/patients';
 import PatientList from '../../components/dashboard/PatientList';
 
 const Dashboard = () => {
-    const patients = useSelector((state: any) => state.patientsReducer.patients);
-    // const [patients, setPatients] = useState([
-    //     { 
-    //         id: '133939484', 
-    //         firstName: 'Daryl', 
-    //         lastName: 'Duckmanton', 
-    //         imageSrc: 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png',
-    //         room: 'A101'
-    //      }
-    // ]);
+    const dispatchToStore = useDispatch();
+    const patientState = useSelector((state: any) => state.patientsState);
+    const patients = patientState ? patientState.patients: [];
+
+    useEffect(() => {
+        if (!patientState || !patientState.hasLoadedPatients) {
+            dispatchToStore(patientsRequested())
+        }
+    }, [dispatchToStore, patientState]);
 
     const onPatientSelect = (patient: any) => {
         console.log(`Patient ${patient.id} selected`);
