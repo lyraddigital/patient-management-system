@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
 
 import { patientsRequested } from '../../store/actions/patients';
 import PatientList from '../../components/dashboard/PatientList';
@@ -29,6 +31,9 @@ const Dashboard = () => {
 
     return (
         <div>
+            <AppBar position="static">
+                <Toolbar></Toolbar>
+            </AppBar>
             <PatientList 
                 patients={patients}
                 onPatientSelected={onPatientSelect}

@@ -25,7 +25,20 @@ const patientsSaga = function*(action: PatientsRequestedAction) {
         }
     `;
     
-    const result = yield call(() => client.query({ query: queryStatement }));
+    // const result = yield call(() => client.query({ query: queryStatement }));
+    const result = {
+      data: {
+        patients: [
+          {
+            id: 1,
+            firstName: 'Daryl',
+            lastName: 'Duckmanton',
+            room: 'Test'
+          }
+        ]
+      },
+      loading: false
+    };
 
     if (!result.loading) {
         yield put({ 
