@@ -3,6 +3,10 @@ import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardActions from '@material-ui/core/CardActions';
+import IconButton from '@material-ui/core/IconButton';
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((_) =>
@@ -11,7 +15,7 @@ const useStyles = makeStyles((_) =>
       display: 'flex'
     },
     cover: {
-      width: 90,
+      width: 120,
     },
     details: {
       display: 'flex', 
@@ -30,10 +34,16 @@ const Patient = (props: any) => {
       <CardMedia className={classes.cover} image="thumbnail.png" />
       <div className={classes.details}>
         <CardHeader title={patientName} subheader={roomNumber}></CardHeader>
-        <CardActions>
-          <button onClick={() => props.patientClicked(props.patient)}>View</button>
-          <button onClick={() => props.updateClicked(props.patient)}>Update</button>
-          <button onClick={() => props.deleteClicked(props.patient)}>Delete</button>
+        <CardActions style={{ display: 'flex', justifyContent: 'flex-end' }}>
+          <IconButton onClick={() => props.patientClicked(props.patient)}>
+            <VisibilityIcon />
+          </IconButton>
+          {/* <IconButton onClick={() => props.updateClicked(props.patient)}>
+            <EditIcon />
+          </IconButton>
+          <IconButton onClick={() => props.deleteClicked(props.patient)}>
+            <DeleteIcon />
+          </IconButton> */}
         </CardActions>
       </div>
     </Card>
