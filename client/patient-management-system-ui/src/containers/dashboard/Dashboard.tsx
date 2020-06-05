@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Box from '@material-ui/core/Box';
+import Container from '@material-ui/core/Container';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 
@@ -34,12 +36,18 @@ const Dashboard = () => {
             <AppBar position="static">
                 <Toolbar></Toolbar>
             </AppBar>
-            <PatientList 
-                patients={patients}
-                onPatientSelected={onPatientSelect}
-                onPatientUpdating={onPatientUpdating}
-                onPatientDeleting={onPatientDeleting}
-            />
+            <Box paddingTop={2}>
+                <Container>
+                    <h2>Dashboard</h2>
+                    <hr />
+                    <PatientList 
+                        patients={patients}
+                        onPatientSelected={onPatientSelect}
+                        onPatientUpdating={onPatientUpdating}
+                        onPatientDeleting={onPatientDeleting}
+                    />
+                </Container>
+            </Box>
         </div>
     );
 }

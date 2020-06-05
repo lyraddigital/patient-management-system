@@ -1,26 +1,41 @@
 import React from 'react';
 import Card from '@material-ui/core/Card';
+import CardMedia from '@material-ui/core/CardMedia';
 import CardHeader from '@material-ui/core/CardHeader';
-import IconButton from '@material-ui/core/IconButton';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+import CardActions from '@material-ui/core/CardActions';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((_) =>
+  createStyles({
+    root: {
+      display: 'flex'
+    },
+    cover: {
+      width: 90,
+    },
+    details: {
+      display: 'flex', 
+      flexDirection: 'column'
+    }
+  })
+);
 
 const Patient = (props: any) => {
-    const patientName = `${props.patient.firstName} ${props.patient.lastName}`;
+  const classes = useStyles();
+  const patientName = `${props.patient.firstName} ${props.patient.lastName}`;
+  const roomNumber = `Room: ${props.patient.room}`;
 
   return (
-    <Card>
-      <CardHeader action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-      } 
-      title={patientName}
-      subheader={props.patient.room}>
-      </CardHeader>
-      <img src={props.patient.imageSrc} alt={patientName} width={100} height={100} />
-      <button onClick={() => props.patientClicked(props.patient)}>Select</button>
-      <button onClick={() => props.updateClicked(props.patient)}>Update</button>
-      <button onClick={() => props.deleteClicked(props.patient)}>Delete</button>
+    <Card className={classes.root}>
+      <CardMedia className={classes.cover} image="thumbnail.png" />
+      <div className={classes.details}>
+        <CardHeader title={patientName} subheader={roomNumber}></CardHeader>
+        <CardActions>
+          <button onClick={() => props.patientClicked(props.patient)}>View</button>
+          <button onClick={() => props.updateClicked(props.patient)}>Update</button>
+          <button onClick={() => props.deleteClicked(props.patient)}>Delete</button>
+        </CardActions>
+      </div>
     </Card>
   );
 }
