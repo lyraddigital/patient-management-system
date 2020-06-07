@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import Layout from '../components/shared/Layout';
 
 const NewPatientPage = () => {
-    const { register, handleSubmit, watch, errors } = useForm();
+    const { register, handleSubmit, errors } = useForm();
     const onSubmit = (data: any) => console.log(data);
 
     return (
