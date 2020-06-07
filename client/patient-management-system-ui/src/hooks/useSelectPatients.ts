@@ -12,13 +12,13 @@ export default function useSelectPatients(): SelectPatientsResult {
 
     if (!loading && data && data.patients) {
         data.patients.forEach(p => {
-            patients.push({
-                id: parseInt(p.id),
-                firstName: p.firstName,
-                lastName: p.lastName,
-                gender: p.gender === 0 ? Gender.Male : Gender.Female,
-                room: p.room
-            });
+            patients.push(new Patient(
+                parseInt(p.id),
+                p.firstName,
+                p.lastName,
+                p.gender === 0 ? Gender.Male : Gender.Female,
+                p.room
+            ));
         });
     }
 

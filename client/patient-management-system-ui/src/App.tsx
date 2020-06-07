@@ -5,7 +5,8 @@ import React from 'react';import {
 } from 'react-router-dom';
 
 import './App.css';
-import Dashboard from './pages/Dashboard';
+import DashboardPage from './pages/DashboardPage';
+import NewPatientPage from './pages/NewPatientPage';
 import ViewPatientPage from './pages/ViewPatientPage';
 
 function App() { 
@@ -13,13 +14,16 @@ function App() {
       <Router>
         <Switch>
           <Route path="/dashboard">
-            <Dashboard />
+            <DashboardPage />
+          </Route>
+          <Route path="/patients/new">
+            <NewPatientPage />
           </Route>
           <Route path="/patients/:id">
             <ViewPatientPage />
           </Route>
           <Route path="/">
-            <Dashboard />
+            <DashboardPage />
           </Route>
         </Switch>
       </Router>

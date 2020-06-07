@@ -10,7 +10,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 
-import Patient, { Gender } from '../../../models/Patient';
+import Patient from '../../../models/Patient';
 
 const useStyles = makeStyles((_) =>
   createStyles({
@@ -36,10 +36,7 @@ interface PatientGridItemProps {
 
 const PatientGridItem = (props: PatientGridItemProps) => {
   const classes = useStyles();
-  const patientName = `${props.patient.firstName} ${props.patient.lastName}`;
-  const roomNumber = `Room: ${props.patient.room}`;
-  const imageSrc = `assets/${props.patient.gender === Gender.Male ? 'thumbnail.png': 'female.png'}`;
-  const headingElement = <Typography noWrap={true}>{patientName}</Typography>;
+  const headingElement = <Typography noWrap={true}>{props.patient.fullName}</Typography>;
 
   const handleUpdateClick = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -56,10 +53,10 @@ const PatientGridItem = (props: PatientGridItemProps) => {
       <Card className={classes.root} onClick={props.patientClicked}>
         <Grid container>
           <Grid container item sm={3}>
-            <CardMedia image={imageSrc} className={classes.cover} />
+            <CardMedia image={props.patient.imageSrc} className={classes.cover} />
           </Grid>
           <Grid item sm={9}>
-            <CardHeader title={headingElement} subheader={roomNumber}></CardHeader>
+            <CardHeader title={headingElement} subheader={props.patient.roomText}></CardHeader>
             <CardActions className={classes.actions}>
               <IconButton onClick={handleUpdateClick}>
                 <EditIcon />

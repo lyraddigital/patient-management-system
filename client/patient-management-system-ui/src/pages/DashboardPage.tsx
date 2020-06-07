@@ -3,9 +3,8 @@ import { withRouter } from 'react-router-dom';
 
 import Layout from '../components/shared/Layout';
 import Loader from '../components/shared/Loader';
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
 import ConfirmDialog from '../components/shared/ConfirmDialog';
+import AddButton from '../components/shared/AddButton';
 import Patients from '../components/patients/Patients';
 import Patient from '../models/Patient';
 import useSelectPatients from '../hooks/useSelectPatients';
@@ -15,7 +14,7 @@ interface DashboardProps {
     history: any;
 }
 
-const Dashboard = (props: DashboardProps) => {
+const DashboardPage = (props: DashboardProps) => {
     const [ patientToDelete, setPatientToDelete ] = useState<Patient>();
     const { patients, loading } = useSelectPatients();
     const [ deleteTodo ] = useDeletePatient();
@@ -44,6 +43,10 @@ const Dashboard = (props: DashboardProps) => {
         setPatientToDelete(undefined);
     };
 
+    const showNewPatientPage = () => {
+        props.history.push(`/patients/new`);
+    };
+
     return (
         <Layout pageTitle="Dashboard">
             <Patients 
@@ -55,15 +58,13 @@ const Dashboard = (props: DashboardProps) => {
             <Loader title="Loading your patients" loading={loading} />
             <ConfirmDialog 
                 title="Delete patient?"
-                message={`Are you sure you want to delete patient`}
+                message={`Are you sure you want to delete patient ${patientToDelete?.fullName}?`}
                 open={!!patientToDelete}
                 onClose={closeDeleteDialog}
                 onConfirmed={deletePatient} />
-            <Fab color="secondary">
-                <AddIcon />
-            </Fab>
+            <AddButton onClick={() => showNewPatientPage()} />
         </Layout>
     );
 }
 
-export default withRouter(Dashboard);
+export default withRouter(DashboardPage);
