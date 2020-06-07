@@ -6,10 +6,14 @@ type Patient {
   id: String!
   firstName: String!
   lastName: String!
-  imageSrc: String!
+  gender: Float!
   room: String!
 }
 
 type Query {
   patients: [Patient!]!
+}
+
+type Mutation {
+  deletePatient(id: String!): Patient!
 }
