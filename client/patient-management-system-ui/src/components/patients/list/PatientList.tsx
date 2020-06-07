@@ -1,5 +1,5 @@
 import React from 'react';
-import List from '@material-ui/core/List';
+import { List } from '@material-ui/core';
 
 import Patient from '../../../models/Patient';
 import PatientListItem from './PatientListItem';

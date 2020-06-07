@@ -1,5 +1,5 @@
 import React from 'react';
-import Fab from '@material-ui/core/Fab';
+import { Fab } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 

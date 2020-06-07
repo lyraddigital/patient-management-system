@@ -1,3 +1,4 @@
+import { History } from 'history';
 import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 
@@ -11,7 +12,7 @@ import useSelectPatients from '../hooks/useSelectPatients';
 import useDeletePatient from '../hooks/useDeletePatient';
 
 interface DashboardProps {
-    history: any;
+    history: History;
 }
 
 const DashboardPage = (props: DashboardProps) => {

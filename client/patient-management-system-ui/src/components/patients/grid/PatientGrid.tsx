@@ -1,5 +1,5 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
+import { Grid } from '@material-ui/core';
 
 import Patient from '../../../models/Patient';
 import PatientGridItem from './PatientGridItem';

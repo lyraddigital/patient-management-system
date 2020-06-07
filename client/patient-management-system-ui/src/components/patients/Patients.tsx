@@ -1,6 +1,6 @@
 import React from 'react';
+import { useMediaQuery } from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import Patient from '../../models/Patient';
 import PatientList from './list/PatientList';
