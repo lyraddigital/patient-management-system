@@ -1,6 +1,8 @@
 import { History } from 'history';
 import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/lab/Alert';
 
 import Layout from '../components/shared/Layout';
 import Loader from '../components/shared/Loader';
@@ -17,7 +19,7 @@ interface DashboardProps {
 
 const DashboardPage = (props: DashboardProps) => {
     const [ patientToDelete, setPatientToDelete ] = useState<Patient>();
-    const { patients, loading } = useSelectPatients();
+    const { patients, loading, error } = useSelectPatients();
     const deleteTodo = useDeletePatient();
 
     const onPatientSelect = (patient: Patient) => {
@@ -57,6 +59,9 @@ const DashboardPage = (props: DashboardProps) => {
                 onPatientDeleting={onPatientDeleting}
             />
             <Loader title="Loading your patients" loading={loading} />
+            <Snackbar anchorOrigin={{ vertical: 'top', horizontal: 'center' }} open={!!error} autoHideDuration={6000}>
+                <Alert severity="error">Error loading patients. Try again later.</Alert>
+            </Snackbar>
             <ConfirmDialog 
                 title="Delete patient?"
                 message={`Are you sure you want to delete patient ${patientToDelete?.fullName}?`}
