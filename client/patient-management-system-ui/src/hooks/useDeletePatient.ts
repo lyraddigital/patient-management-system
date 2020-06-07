@@ -1,23 +1,19 @@
 import { useDeletePatientMutation, GetPatientsDocument, GetPatientsQuery } from '../generated/graphql';
 
-// interface SelectPatientsResult {
-//     loading: boolean;
-//     patients: Patient[];
-// }
-
-export default function useDeletePatient() {
+export default function useDeletePatient(): (id: string) => Promise<any> {
     const [ deleteTodo ] = useDeletePatientMutation({ 
         update: (client, { data }) => { 
-            const oldCache = client.readQuery<GetPatientsQuery>({ query: GetPatientsDocument });
+            const previousPatientsEntry = client.readQuery<GetPatientsQuery>({ query: GetPatientsDocument });
 
-            if (oldCache?.patients) {
-                const index = oldCache.patients.findIndex(p => p.id === data?.deletePatient?.id);
-                oldCache.patients.splice(index, 1);
+            if (previousPatientsEntry?.patients) {
+                const index = previousPatientsEntry.patients.findIndex(p => p.id === data?.deletePatient?.id);
+                previousPatientsEntry.patients.splice(index, 1);
+                const newPatientsEntry = { patients: previousPatientsEntry.patients };
 
-                client.writeQuery({ query: GetPatientsDocument, data: { patients: oldCache.patients } });
+                client.writeQuery({ query: GetPatientsDocument, data: newPatientsEntry });
             }
         }
     });
 
-    return [ deleteTodo ];
+    return (id: string) => deleteTodo({ variables: { id } });
 }

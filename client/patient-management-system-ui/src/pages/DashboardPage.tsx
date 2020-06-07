@@ -18,7 +18,7 @@ interface DashboardProps {
 const DashboardPage = (props: DashboardProps) => {
     const [ patientToDelete, setPatientToDelete ] = useState<Patient>();
     const { patients, loading } = useSelectPatients();
-    const [ deleteTodo ] = useDeletePatient();
+    const deleteTodo = useDeletePatient();
 
     const onPatientSelect = (patient: Patient) => {
         props.history.push(`/patients/${patient.id}`);
@@ -38,7 +38,7 @@ const DashboardPage = (props: DashboardProps) => {
 
     const deletePatient = async () => {
         if (patientToDelete) {
-            await deleteTodo({ variables: { id: patientToDelete.id.toString() } });
+            await deleteTodo(patientToDelete.id.toString());
         }
 
         setPatientToDelete(undefined);
