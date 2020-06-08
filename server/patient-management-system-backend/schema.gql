@@ -10,8 +10,14 @@ type Patient {
   room: String!
 }
 
+type Room {
+  id: String!
+  roomNumber: String!
+}
+
 type Query {
   patients: [Patient!]!
+  rooms: [Room!]!
 }
 
 type Mutation {
