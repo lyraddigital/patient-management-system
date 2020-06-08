@@ -52,6 +52,10 @@ const DashboardPage = (props: DashboardProps) => {
 
     return (
         <Layout pageTitle="Dashboard">
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+                <h3 style={{ flex: '1 0 0'}}>Patients</h3>
+                <AddButton onClick={() => showNewPatientPage()} />
+            </div>
             <Patients 
                 patients={patients}
                 onPatientSelected={onPatientSelect}
@@ -59,8 +63,8 @@ const DashboardPage = (props: DashboardProps) => {
                 onPatientDeleting={onPatientDeleting}
             />
             <Loader title="Loading your patients" loading={loading} />
-            <Snackbar anchorOrigin={{ vertical: 'top', horizontal: 'center' }} open={!!error} autoHideDuration={6000}>
-                <Alert severity="error">Error loading patients. Try again later.</Alert>
+            <Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} open={!!error} autoHideDuration={6000}>
+                <Alert variant="filled" severity="error">Error loading patients. Try again later.</Alert>
             </Snackbar>
             <ConfirmDialog 
                 title="Delete patient?"
@@ -68,7 +72,6 @@ const DashboardPage = (props: DashboardProps) => {
                 open={!!patientToDelete}
                 onClose={closeDeleteDialog}
                 onConfirmed={deletePatient} />
-            <AddButton onClick={() => showNewPatientPage()} />
         </Layout>
     );
 }
