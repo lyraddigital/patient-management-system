@@ -1,44 +1,42 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Patient Management System Frontend
 
-## Available Scripts
+This project represents a simple single page application that manages patients in a hospital. It is built using React JS and Typescript.
 
-In the project directory, you can run:
+## Running the application
 
-### `npm start`
+To run this application on your development machine first install the dependencies by running.
 
-Runs the app in the development mode.<br />
+```bash
+$ npm install
+```
+
+Then you can start the application by running
+
+```bash
+$ npm start
+```
+
+This will runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
-### `npm test`
+## Building the application
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+To build this application and make it production ready. Use the following command.
 
-### `npm run build`
+```bash
+$ npm run build
+```
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Updating the GraphQL
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+In this application GraphQL is used. The queries and mutations that are to be run against the server exists in the **graphql** folder. However this folder just contains queries and mutations. In order for this application to run, another tool called **graphql-codegen** is used to compile these statements. The result of this creates generated React hooks (*inside the **src/generated** folder*).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+If you need to add, update or delete the GraphQL statements in the **graphql** folder, you will need to rebuild the generated code. To do this just run the following command.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+$ npm run generate
+```
