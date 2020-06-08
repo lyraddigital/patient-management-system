@@ -4,5 +4,5 @@ written in both React JS / Typescript and NestJS / Typescript respectively.
 
 For information on how to run application, check out the documentation listed below:-
 
-- [Client README.md](client/README.md)
-- [Server README.md](server/README.md)
+- [Client README.md](/client/README.md)
+- [Server README.md](/server/README.md)
